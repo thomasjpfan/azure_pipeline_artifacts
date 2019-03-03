@@ -32,8 +32,8 @@ jobs:
           targetPath: $(System.DefaultWorkingDirectory)
         displayName: "Download artifacts"
       - script: |
-          ls $BUILD_ARTIFACTSTAGINGDIRECTORY
+          ls $BUILD_SOURCESDIRECTORY
         displayName: "Look"
       - script: |
-          cat $BUILD_ARTIFACTSTAGINGDIRECTORY/first.txt
+          cat $BUILD_SOURCESDIRECTORY/first.txt
         displayName: "Check it out"
