@@ -15,7 +15,7 @@ jobs:
           cp $BUILD_SOURCESDIRECTORY/first.txt $BUILD_ARTIFACTSTAGINGDIRECTORY
         displayName: "Move file to staging"
       - task: PublishPipelineArtifact@0
-        inpurts:
+        inputs:
           artifactName: "first"
           targetPath: "$(Build.ArtifactStagingDirectory)/first.txt"
         displayName: "Upload to artifacts"
