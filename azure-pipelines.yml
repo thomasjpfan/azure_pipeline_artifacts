@@ -1,0 +1,17 @@
+name: Testing artifacts
+
+jobs:
+  - job: first
+    steps:
+      - script: |
+          echo "first" > first.txt
+        displayName: "Build"
+      - script: |
+          ls $BUILD_SOURCESDIRECTORY
+        display: "Show sources"
+      - script: |
+          cp $BUILD_SOURCESDIRECTORY/first.txt $BUILD_ARTIFACTSTAGINGDIRECTORY
+        display: "Move file to staging"
+      - task: PublishPipelineArtifact@0
+        artifactName: "first"
+        targetPath: "$(Build.ArtifactStagingDirectory)/first.txt"
