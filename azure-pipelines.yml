@@ -19,3 +19,20 @@ jobs:
           artifactName: "first"
           targetPath: "$(Build.ArtifactStagingDirectory)/first.txt"
         displayName: "Upload to artifacts"
+
+  - job: second
+    dependsOn:
+      - first
+    pool:
+      vmImage: "ubuntu-16.04"
+    steps:
+      - task: DownloadPipelineArtifact@0
+        inputs:
+          targetPath: $(System.DefaultWorkingDirectory)
+        displayName: "Download artifacts"
+      - script: |
+          ls $BUILD_ARTIFACTSTAGINGDIRECTORY
+        displayName: "Look"
+      - script: |
+          cat $BUILD_ARTIFACTSTAGINGDIRECTORY/first.txt
+        displayName: "Check it out"
