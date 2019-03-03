@@ -2,16 +2,19 @@ name: Testing artifacts
 
 jobs:
   - job: first
+    pool:
+      vmImage: "ubuntu-16.04"
     steps:
       - script: |
           echo "first" > first.txt
         displayName: "Build"
       - script: |
           ls $BUILD_SOURCESDIRECTORY
-        display: "Show sources"
+        displayName: "Show sources"
       - script: |
           cp $BUILD_SOURCESDIRECTORY/first.txt $BUILD_ARTIFACTSTAGINGDIRECTORY
-        display: "Move file to staging"
+        displayName: "Move file to staging"
       - task: PublishPipelineArtifact@0
         artifactName: "first"
         targetPath: "$(Build.ArtifactStagingDirectory)/first.txt"
+        displayName: "Upload to artifacts"
