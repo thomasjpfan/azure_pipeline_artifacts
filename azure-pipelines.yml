@@ -28,6 +28,7 @@ jobs:
     steps:
       - task: DownloadPipelineArtifact@0
         inputs:
+          artifactName: "first"
           targetPath: $(System.DefaultWorkingDirectory)
         displayName: "Download artifacts"
       - script: |
